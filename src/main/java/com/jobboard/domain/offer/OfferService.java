@@ -18,16 +18,10 @@ class OfferService {
     }
 
     private List<Offer> fetchOffers() {
-        return offerFetcher.fetchOffers()
-                .stream()
-                .map(OfferMapper::mapFromJobOfferResponseToOffer)
-                .collect(Collectors.toList());
+        return offerFetcher.fetchOffers().stream().map(OfferMapper::mapFromJobOfferResponseToOffer).collect(Collectors.toList());
     }
 
     private List<Offer> filterNotExistingOffers(List<Offer> jobOffers) {
-        return jobOffers.stream()
-                .filter(offerDto -> !offerDto.offerUrl().isEmpty())
-                .filter(offerDto -> !offerRepository.existByOfferUrl(offerDto.offerUrl()))
-                .collect(Collectors.toList());
+        return jobOffers.stream().filter(offerDto -> !offerDto.offerUrl().isEmpty()).filter(offerDto -> !offerRepository.existsByOfferUrl(offerDto.offerUrl())).collect(Collectors.toList());
     }
 }
