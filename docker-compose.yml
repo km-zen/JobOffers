@@ -12,7 +12,7 @@ services:
     volumes:
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     ports:
-      - "27017:27017"
+      - "27018:27017"
 
   mongo-express:
     image: mongo-express
@@ -22,4 +22,4 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/  # mongodb://{mongo-image-username}:{mongo-image-password}@{mongo-image-name}:{port}
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27018/  # mongodb://{mongo-image-username}:{mongo-image-password}@{mongo-image-name}:{port}
